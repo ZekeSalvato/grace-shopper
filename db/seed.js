@@ -8,6 +8,7 @@ async function dropTables() {
     // add code here
     await client.query(`
       DROP TABLE IF EXISTS products;
+      DROP TABLE IF EXISTS users;
     `)
     
     console.log('Finished Dropping Tables')
@@ -27,6 +28,12 @@ async function createTables() {
         title VARCHAR(255),
         description VARCHAR(255)
       );
+      CREATE TABLE users (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(225) NOT NULL
+      );
+
     `)
     
     console.log('Finished Creating Tables')
