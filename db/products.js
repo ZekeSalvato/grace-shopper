@@ -1,12 +1,12 @@
 const { client } = require('./');
 
-async function createProduct({title, description}) {
+async function createProduct({title, description, price}) {
   try {
     const { rows: [product]} = await client.query(`
       INSERT INTO products (title, description)
-      VALUES ($1, $2)
+      VALUES ($1, $2, $3)
       RETURNING *;
-    `, [title, description])
+    `, [title, description, price])
     
     return product;
   }
@@ -14,6 +14,22 @@ async function createProduct({title, description}) {
     console.log('error in creatPruduct adapter function')
   }
 }
+
+async function fetchAllProducts({id, ...fields}){
+  try {
+    const {rows: products} = await client.query(`
+      SELECT *
+      FROM products
+    `, [fields])
+
+    return products;
+  } catch(error){
+    console.log("failed to fetch products")
+    throw error
+  }
+}
+
+
 
 async function updateProduct({id, ...fields}) {
   const setString = Object.keys(fields).map(
@@ -54,5 +70,6 @@ async function deleteProduct(id) {
 module.exports = {
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  fetchAllProducts
 }

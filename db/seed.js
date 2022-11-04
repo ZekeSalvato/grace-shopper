@@ -25,9 +25,9 @@ async function createTables() {
     await client.query(`
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
-        "adminId" INTEGER REFERENCES admin (id),
         title VARCHAR(255),
-        description VARCHAR(255)
+        description VARCHAR(255),
+        price INTEGER NOT NULL
       );
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
@@ -81,13 +81,16 @@ async function createInitialProducts() {
   }
 }
 
-createInitialUsers() {
+async function createInitialUsers() {
   console.log("Creating users")
   try{
-    const admins = [
+    const adminList = [
       {username: "Alphonse", password: "password", isAdmin: true}
     ]
-  } catch()
+    const admins = await Promise.all(adminList.map(createUser))
+  } catch(error){
+    console.log("Failed to make admin")
+  }
 }
 async function buildDB() {
   try {
@@ -96,6 +99,7 @@ async function buildDB() {
     await dropTables();
     await createTables();
     await createInitialProducts();
+    await createInitialUsers();
   }
   catch(ex) {
     console.log('Error building the DB')
