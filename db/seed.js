@@ -1,6 +1,7 @@
 const { client } = require('./')
 
 const { createProduct } = require('./products')
+const { createUser } = require('./users')
 
 async function dropTables() {
   try {
@@ -13,8 +14,9 @@ async function dropTables() {
     
     console.log('Finished Dropping Tables')
   } 
-  catch(ex) {
+  catch(error) {
     console.log('error dropping tables')
+    throw error
   }
 }
 
@@ -27,26 +29,23 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
         description VARCHAR(255),
-        price INTEGER NOT NULL
+        price VARCHAR(225)
       );
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(225) NOT NULL,
-        "isAdmin" BOOLEAN DEFAULT false;
+        "isAdmin" BOOLEAN DEFAULT false
         
       );
-      CREATE TABLE category (
-        id SERIAL PRIMARY KEY,
-
-      )
 
     `)
     
     console.log('Finished Creating Tables')
   } 
-  catch(ex) {
+  catch(error) {
     console.log('error creating tables')
+    throw error
   }
 }
 
@@ -55,29 +54,33 @@ async function createInitialProducts() {
     console.log('Creating Products')
     await createProduct({
       title:
-        "The first most amazing product",
+        "Headphones",
+        price: "$200",
       description:
-        "Description for the first most amazing product ever...."
+        "Seriously, who pays $200 for headphones...."
     });
     
     await createProduct({
       title:
-        "The second most amazing product",
+        "Teats on a hog",
+        price: "priceless",
       description:
-        "Description for the second most amazing product ever...."
+        "Whats that saying about teats on a hog....?"
     });
     
     await createProduct({
       title:
-        "The third most amazing product",
+        "Computer",
+        price: "10",
       description:
-        "Description for the third most amazing product ever...."
+        "Surely not a scam...."
     });
     
     console.log('Finished creating Products')
   } 
-  catch(ex) {
+  catch(error) {
     console.log('error creating Products')
+    throw error
   }
 }
 
@@ -90,6 +93,7 @@ async function createInitialUsers() {
     const admins = await Promise.all(adminList.map(createUser))
   } catch(error){
     console.log("Failed to make admin")
+    throw error
   }
 }
 async function buildDB() {
@@ -101,8 +105,9 @@ async function buildDB() {
     await createInitialProducts();
     await createInitialUsers();
   }
-  catch(ex) {
+  catch(error) {
     console.log('Error building the DB')
+    throw error
   }
 }
 

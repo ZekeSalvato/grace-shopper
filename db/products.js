@@ -3,15 +3,16 @@ const { client } = require('./');
 async function createProduct({title, description, price}) {
   try {
     const { rows: [product]} = await client.query(`
-      INSERT INTO products (title, description)
+      INSERT INTO products (title, description, price)
       VALUES ($1, $2, $3)
       RETURNING *;
     `, [title, description, price])
     
     return product;
   }
-  catch(ex) {
-    console.log('error in creatPruduct adapter function')
+  catch(error) {
+    console.log('error in createProduct adapter function')
+    throw error
   }
 }
 
