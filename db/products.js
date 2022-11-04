@@ -15,7 +15,44 @@ async function createProduct({title, description}) {
   }
 }
 
+async function updateProduct({id, ...fields}) {
+  const setString = Object.keys(fields).map(
+
+    (key, index) => {
+      return `"${key}" =$${index +1} `
+    });
+
+    try {
+      const {rows: [products]} = await client.query(`
+        UPDATE products
+        SET ${setString}
+        WHERE id= ${id}
+        RETURNING *;
+      `, Object.values(fields));
+
+      return products;
+    } catch(error){
+        console.log("could not update product")
+        throw error
+    }
+}
+
+async function deleteProduct(id) {
+  try{
+    const {rows: [products]} = await client.query(`
+      DELETE FROM products
+      WHERE id= $1
+    `, [id]);
+
+    return products;
+  } catch(error) {
+    console.log("Error deleting product")
+    throw error
+  }
+}
 
 module.exports = {
-  createProduct
+  createProduct,
+  updateProduct,
+  deleteProduct
 }
