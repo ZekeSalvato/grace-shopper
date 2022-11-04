@@ -25,14 +25,21 @@ async function createTables() {
     await client.query(`
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
+        "adminId" INTEGER REFERENCES admin (id),
         title VARCHAR(255),
         description VARCHAR(255)
       );
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(225) NOT NULL
+        password VARCHAR(225) NOT NULL,
+        "isAdmin" BOOLEAN DEFAULT false;
+        
       );
+      CREATE TABLE category (
+        id SERIAL PRIMARY KEY,
+
+      )
 
     `)
     
@@ -74,6 +81,14 @@ async function createInitialProducts() {
   }
 }
 
+createInitialUsers() {
+  console.log("Creating users")
+  try{
+    const admins = [
+      {username: "Alphonse", password: "password", isAdmin: true}
+    ]
+  } catch()
+}
 async function buildDB() {
   try {
     // need to add something here

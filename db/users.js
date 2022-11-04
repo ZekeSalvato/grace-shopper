@@ -16,6 +16,18 @@ async function createUser({username, password}) {
     }
 }
 
+async function setAsAdmin({username, isAdmin}){
+try{
+    const {rows: admin}= await client.query(`
+    SELECT username
+    FROM users
+    username = $1 AND "isAdmin" = TRUE
+`)
+} catch(error){
+    console.log("error setting admin")
+    throw error
+}
+}
 module.exports = {
     createUser
 }
