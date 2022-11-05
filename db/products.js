@@ -1,4 +1,4 @@
-const { client } = require('./');
+const { client } = require('./client');
 
 async function createProduct({title, description, price}) {
   try {
@@ -16,16 +16,18 @@ async function createProduct({title, description, price}) {
   }
 }
 
-async function fetchAllProducts({id, ...fields}){
+async function fetchAllProducts(){
+  console.log("fetch products")
   try {
+    
     const {rows: products} = await client.query(`
       SELECT *
-      FROM products
-    `, [fields])
-
+      FROM products;
+    `)
+      console.log("done with query")
     return products;
   } catch(error){
-    console.log("failed to fetch products")
+    console.log(error)
     throw error
   }
 }

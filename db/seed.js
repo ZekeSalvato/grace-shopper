@@ -1,6 +1,6 @@
-const { client } = require('./')
+const { client } = require('./client')
 
-const { createProduct } = require('./products')
+const { createProduct, fetchAllProducts } = require('./products')
 const { createUser } = require('./users')
 
 async function dropTables() {
@@ -75,7 +75,8 @@ async function createInitialProducts() {
       description:
         "Surely not a scam...."
     });
-    
+    const products = await fetchAllProducts();
+    console.log(products)
     console.log('Finished creating Products')
   } 
   catch(error) {
@@ -88,7 +89,9 @@ async function createInitialUsers() {
   console.log("Creating users")
   try{
     const adminList = [
-      {username: "Alphonse", password: "password", isAdmin: true}
+      {username: "Alphonse", password: "password", isAdmin: true},
+      {username: "Zeke", password: "password", isAdmin: true},
+      {username: "Stephanie", password: "password", isAdmin: true}
     ]
     const admins = await Promise.all(adminList.map(async (user) => {
       const result = await createUser(user)
