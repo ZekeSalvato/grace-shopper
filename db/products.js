@@ -20,12 +20,12 @@ async function fetchAllProducts(){
   console.log("fetch products")
   try {
     
-    const {rows: products} = await client.query(`
+    const {rows} = await client.query(`
       SELECT *
       FROM products;
     `)
       console.log("done with query")
-    return products;
+    return rows;
   } catch(error){
     console.log(error)
     throw error
