@@ -90,7 +90,11 @@ async function createInitialUsers() {
     const adminList = [
       {username: "Alphonse", password: "password", isAdmin: true}
     ]
-    const admins = await Promise.all(adminList.map(createUser))
+    const admins = await Promise.all(adminList.map(async (user) => {
+      const result = await createUser(user)
+      console.log(result)
+      return result;
+    }))
   } catch(error){
     console.log("Failed to make admin")
     throw error
