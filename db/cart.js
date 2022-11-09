@@ -1,5 +1,5 @@
 const client = require("./client");
-const { getProductById } = require ("./products");
+
 
 async function getCart(id){
     try{
@@ -73,5 +73,6 @@ module.exports = {
 getCart,
 //createCart,
 addToCart,
-removeFromCart
+removeFromCart,
+updateCart
 }
