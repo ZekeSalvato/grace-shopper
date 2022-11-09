@@ -20,10 +20,22 @@ async function createCart(){
 
 }
 
-async function addToCart(){
-    
-
+async function addToCart(productId , quantity){
+    try{
+        const{rows: [addProductToCart]} = await client.query(
+            `
+            INSERT INTO cart("productId", quantity)
+            VALUES ($1,$2)
+            RETURNING *;
+            `, [productId, quantity]
+        );
+        return addProductToCart;
+    }catch(error){
+        throw error;
+    }
 }
+
+
 
 async function removeFromCart(){
 

@@ -10,6 +10,7 @@ async function dropTables() {
     await client.query(`
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
+      DROP TABLE IF EXISTS cart;
     `)
     
     console.log('Finished Dropping Tables')
@@ -29,7 +30,7 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
         description VARCHAR(255),
-        price VARCHAR(225)
+        price INTEGER
       );
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
@@ -39,7 +40,11 @@ async function createTables() {
         
       );
 
-      
+      CREATE TABLE cart (
+        id SERIAL PRIMARY KEY,
+        "productId" INTEGER REFERENCES products(id),
+        quantity INTEGER NOT NULL
+      );
 
     `)
     
