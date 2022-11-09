@@ -61,26 +61,122 @@ async function createInitialProducts() {
     console.log('Creating Products')
     await createProduct({
       title:
-        "Headphones",
-        price: "$200",
+        "Tamagotchi",
+        price: "$25",
       description:
-        "Seriously, who pays $200 for headphones...."
+        "Bring back ALL the 90s memories with the infamous pocket friend"
     });
     
     await createProduct({
       title:
-        "Teats on a hog",
-        price: "priceless",
+        "Etch A Sketch",
+        price: "$15",
       description:
-        "Whats that saying about teats on a hog....?"
+        "Draw the world around you, your friends, or your favorite TV characters with Etch A Sketch "
     });
     
     await createProduct({
       title:
-        "Computer",
-        price: "10",
+        "Bop It",
+        price: "$20",
       description:
-        "Surely not a scam...."
+        "The Bop It! game is a portable game for on-the-go fun. It features 3 solo and social play options and others for one or more players"
+    });
+
+    await createProduct({
+      title:
+        "Furby",
+        price: "$45",
+      description:
+        "The 90s favorite furry electronic companion with a vocabulary of about 200 words and ability to react to its environment"
+    });
+
+    await createProduct({
+      title:
+        "Beanie Babies",
+        price: "$100",
+      description:
+        "Collect and cuddle with the 90s most sought after collectible item"
+    });
+
+    await createProduct({
+      title:
+        "Sony Aibo",
+        price: "$60",
+      description:
+        "Aibo, the robotic K9 companion with tricks up his sleeve"
+    });
+
+    await createProduct({
+      title:
+        "Super Nintendo (SNES)",
+        price: "$120",
+      description:
+        "Famous 16-bit console released by Nintendo"
+    });
+
+    await createProduct({
+      title:
+        "K'Nex",
+        price: "$30",
+      description:
+        "K'Nex is a rod and connector building system that lets you build kinetic toys"
+    });
+
+    await createProduct({
+      title:
+        "Socker Boppers",
+        price: "$25",
+      description:
+        "Inflatable boxing pillows for soft and safe fun!"
+    });
+
+    await createProduct({
+      title:
+        "Creepy Crawlers",
+        price: "$20",
+      description:
+        "Spooky die-cast bug molds available in assorted colors"
+    });
+
+    await createProduct({
+      title:
+        "Tech Deck",
+        price: "$10",
+      description:
+        "Finger sized skateboards perfect for shredding the gnar on the kitchen counter top"
+    });
+
+    await createProduct({
+      title:
+        "Rock Em Sock Em",
+        price: "$60",
+      description:
+        "Battle your friends in the arena with the Rock em Sock em robot boxing ring"
+    });
+
+    await createProduct({
+      title:
+        "Jenga",
+        price: "$free this game fucking sucks",
+      description:
+        "Stack against your friends but don't knock over the tower!"
+    });
+
+    await createProduct({
+      title:
+        "Mighty Beanz",
+        price: "$50",
+      description:
+        "Collectible battle beans"
+    });
+
+    await createProduct({
+      title:
+        "Lite Brite",
+        price: "$60",
+      description:
+        "Create art with light using Lite-Brite"
     });
     const products = await fetchAllProducts();
     console.log(products)
