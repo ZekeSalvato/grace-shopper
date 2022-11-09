@@ -16,9 +16,9 @@ async function getCart(id){
     }
 }
 
-async function createCart(){
+/*async function createCart(){
 
-}
+}*/
 
 async function addToCart(productId , quantity){
     try{
@@ -37,17 +37,41 @@ async function addToCart(productId , quantity){
 
 
 
-async function removeFromCart(){
+async function removeFromCart(productId){
+    try{
+        const{
+            rows: result
+        } = await client.query(
+            `
+            DELETE FROM cart WHERE id = ${productId};
 
+            `, [productId]
+        );
+        return result;
+    }catch(error){
+        throw error;
+    }
 }
 
+async function updateCart(productId, quantity){
+    try{
+        const{rows: [updatedCart]} = await client.query(
+            `
+            UPDATE cart SET quantity WHERE id=${productId}
+            `,[productId, quantity]
+        );
+        return updatedCart;
+    }catch(error){
+        throw error;
+    }
+}
 
 
 
 
 module.exports = {
 getCart,
-createCart,
+//createCart,
 addToCart,
 removeFromCart
 }
