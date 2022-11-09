@@ -39,6 +39,8 @@ async function createTables() {
         
       );
 
+      
+
     `)
     
     console.log('Finished Creating Tables')
