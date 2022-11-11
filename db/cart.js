@@ -19,7 +19,7 @@ async function getCart(id){
 /*async function createCart(){
 
 }*/
-
+// add to cart may be addproduct to cart in products.js
 async function addToCart(productId , quantity){
     try{
         const{rows: [addProductToCart]} = await client.query(
@@ -71,7 +71,6 @@ async function updateCart(productId, quantity){
 
 module.exports = {
 getCart,
-//createCart,
 addToCart,
 removeFromCart,
 updateCart

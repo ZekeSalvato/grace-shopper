@@ -8,9 +8,10 @@ async function dropTables() {
     console.log('Dropping Tables')
     // add code here
     await client.query(`
+      DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
-      DROP TABLE IF EXISTS cart;
+  
     `)
     
     console.log('Finished Dropping Tables')
@@ -62,7 +63,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Tamagotchi",
-        price: "$25",
+        price: "25",
       description:
         "Bring back ALL the 90s memories with the infamous pocket friend"
     });
@@ -70,7 +71,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Etch A Sketch",
-        price: "$15",
+        price: "15",
       description:
         "Draw the world around you, your friends, or your favorite TV characters with Etch A Sketch "
     });
@@ -78,7 +79,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Bop It",
-        price: "$20",
+        price: "20",
       description:
         "The Bop It! game is a portable game for on-the-go fun. It features 3 solo and social play options and others for one or more players"
     });
@@ -86,7 +87,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Furby",
-        price: "$45",
+        price: "45",
       description:
         "The 90s favorite furry electronic companion with a vocabulary of about 200 words and ability to react to its environment"
     });
@@ -94,7 +95,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Beanie Babies",
-        price: "$100",
+        price: "100",
       description:
         "Collect and cuddle with the 90s most sought after collectible item"
     });
@@ -102,7 +103,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Sony Aibo",
-        price: "$60",
+        price: "60",
       description:
         "Aibo, the robotic K9 companion with tricks up his sleeve"
     });
@@ -110,7 +111,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Super Nintendo (SNES)",
-        price: "$120",
+        price: "120",
       description:
         "Famous 16-bit console released by Nintendo"
     });
@@ -118,7 +119,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "K'Nex",
-        price: "$30",
+        price: "30",
       description:
         "K'Nex is a rod and connector building system that lets you build kinetic toys"
     });
@@ -126,7 +127,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Socker Boppers",
-        price: "$25",
+        price: "25",
       description:
         "Inflatable boxing pillows for soft and safe fun!"
     });
@@ -134,7 +135,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Creepy Crawlers",
-        price: "$20",
+        price: "20",
       description:
         "Spooky die-cast bug molds available in assorted colors"
     });
@@ -142,7 +143,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Tech Deck",
-        price: "$10",
+        price: "10",
       description:
         "Finger sized skateboards perfect for shredding the gnar on the kitchen counter top"
     });
@@ -150,7 +151,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Rock Em Sock Em",
-        price: "$60",
+        price: "60",
       description:
         "Battle your friends in the arena with the Rock em Sock em robot boxing ring"
     });
@@ -158,7 +159,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Jenga",
-        price: "$free this game fucking sucks",
+        price: "0",
       description:
         "Stack against your friends but don't knock over the tower!"
     });
@@ -166,7 +167,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Mighty Beanz",
-        price: "$50",
+        price: "50",
       description:
         "Collectible battle beans"
     });
@@ -174,7 +175,7 @@ async function createInitialProducts() {
     await createProduct({
       title:
         "Lite Brite",
-        price: "$60",
+        price: "60",
       description:
         "Create art with light using Lite-Brite"
     });
