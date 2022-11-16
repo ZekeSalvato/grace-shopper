@@ -5,7 +5,8 @@ import './CSS/home.css';
 const Home = () => {
     return (
         <div id="homePage">
-            <h1 id="siteTitle">Flashback to the 90's </h1>
+            <h1 id="siteTitle">90's-Flashback.fm </h1>
+            <p>Tune in to relive the toys & electronics the 90's had to offer</p>
         </div>
     );
 }
