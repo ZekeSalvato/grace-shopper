@@ -195,7 +195,9 @@ async function createInitialUsers() {
     const adminList = [
       {username: "Alphonse", password: "password", isAdmin: true},
       {username: "Zeke", password: "password", isAdmin: true},
-      {username: "Stephanie", password: "password", isAdmin: true}
+      {username: "Stephanie", password: "password", isAdmin: true},
+      {username: "Scout", password: "password", isAdmin: true},
+      { username: "Lexi", password: "password", isAdmin: true}
     ]
     const admins = await Promise.all(adminList.map(async (user) => {
       const result = await createUser(user)
