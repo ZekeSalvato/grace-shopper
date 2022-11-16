@@ -6,7 +6,8 @@ dropdowns to sort products,
 orders/ order history,
 reviews,
 reccomendations,
-wishlist
+wishlist,
+Scout: cart sidebar
 
 
 *** NEXT GOALS ***
