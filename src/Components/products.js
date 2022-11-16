@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 async function getProducts(){
     try{
-        const repsonse = await fetch(`localhost://3001/api/products`)
+        const response = await fetch(`localhost://3001/api/products`)
         const results = await response.json();
         return results
     } catch(error){

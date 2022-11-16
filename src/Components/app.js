@@ -17,17 +17,46 @@ const App = () => {
 
     const [products, setProducts] = useState([]);
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [user, setUser] = useState({});
     const [token, setToken] = useState('')
 
     return(
+        <div>
         <Routes>
             <Route path="/" element={<Home />}/>
-            <Route path="/login" element={<Login /> 
-            <Route /> 
-            <Route /> 
+
+            <Route path="/login">
+                <Login username = {username}
+                setUsername = {setUsername}
+                password = {password}
+                setPassword = {setPassword}
+                setUser = {setUser}
+                />
+            </Route>
+
+            <Route path="/register">
+                <Register 
+                username = {username}
+                setUsername = {setUsername}
+                password = {password}
+                setPassword = {setPassword}
+                setUser = {setUser}
+                />
+            </Route>
+
+            <Route path="/products">
+                <Products 
+                products = {products}
+                setProducts = {setProducts}
+                />
+            </Route>
+
+
+
         </Routes>
-    )
+        </div>
+    );
 
 }
 
