@@ -1,5 +1,5 @@
 const express = require('express');
-const {getCart, updateCart, removeFromCart} = require('../../db/cart')
+const {getCart, updateCart, removeFromCart} = require('../db/cart')
 const cartRouter = express.Router();
 
 //require token on login?

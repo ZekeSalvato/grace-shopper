@@ -1,15 +1,24 @@
-const express = require('express');
+const baseURL = 'http://localhost:3000/ZekeSalvato/grace-shoppe/api'
 
-const apiRouter = express.Router();
+export const registerUser = async (username, password) => {
+    try {
+        const response = await fetch(`${baseURL}/users/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    username: username,
+                    password: password
+            })
+        })
 
-const usersRouter = require('./usersRouter');
-apiRouter.use('/users', usersRouter)
+        const results = await response.json();
 
-const productsRouter = require('./productsRouter');
-apiRouter.use('/products', productsRouter);
-
-const cartRouter = require('./cartRouter');
-apiRouter.use('/cart', cartRouter);
-
-
-module.exports = apiRouter;
+        console.log(results)
+ 
+        return results;
+    } catch (err) {
+        console.log('Error registering user')
+    }
+};
