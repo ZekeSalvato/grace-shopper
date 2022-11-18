@@ -19,7 +19,17 @@ const App = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState({});
-    const [token, setToken] = useState('')
+    const [token, setToken] = useState('');
+
+    const fetchProducts = async () => {
+        const response = await fetch("./api/products");
+        const { products } = await response.json();
+        setProducts(products);
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     return(
         <div>
@@ -31,6 +41,7 @@ const App = () => {
                 setUsername = {setUsername}
                 password = {password}
                 setPassword = {setPassword}
+                user = {user}
                 setUser = {setUser}
                 />
             </Route>
