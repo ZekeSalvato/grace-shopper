@@ -1,5 +1,6 @@
-import { response } from "express";
+
 import React, {useEffect, useState} from "react";
+import { Products } from ".";
 
 async function getProducts(){
     try{
@@ -26,3 +27,5 @@ const products = () => {
         <div>Hellow World</div>
     )
 }
+
+export default Products;

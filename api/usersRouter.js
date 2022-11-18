@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const usersRouter = express.Router();
 
-const { createUser, getUser, getUserByUsername, getUserById } = require('../../db/users')
+const { createUser, getUser, getUserByUsername, getUserById } = require('../db/users')
 //need to put correct component links
 usersRouter.post('/', async (req, res, next) => {
     const { username, password } = req.body;

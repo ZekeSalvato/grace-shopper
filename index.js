@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const server = express();
-const PORT = 3001;
+const PORT = 3000;
 
 server.use(morgan("dev"));
 server.use(express.json());
@@ -15,7 +15,7 @@ server.use((req, res, next) => {
   next();
 })
 
-const apiRouter = require('./src/api');
+const apiRouter = require('./api');
 server.use('/api', apiRouter);
 
 server.listen(PORT, () => {

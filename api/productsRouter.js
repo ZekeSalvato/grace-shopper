@@ -1,8 +1,8 @@
 const express = require('express');
-const { fetchAllProducts, getProductById } = require('../../db/products')
+const { fetchAllProducts, getProductById } = require('../db/products')
 const productsRouter = express.Router();
 
-const { createProduct, updateProduct, deleteProduct } = require('../../db');
+const { createProduct, updateProduct, deleteProduct } = require('../db');
 console.log(fetchAllProducts)
 productsRouter.get('/', async (req, res, next) => {
   try {
