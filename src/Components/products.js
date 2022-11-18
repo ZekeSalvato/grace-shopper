@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from "react";
-import { Products } from ".";
+// import { Products } from ".";
 
 async function getProducts(){
     try{
@@ -12,7 +12,7 @@ async function getProducts(){
         throw error
     }
 }
-const products = () => {
+const Products = () => {
     const [products, setProducts] = useState([])
     const fetchProd = async () => {
         const results = await getProducts()
