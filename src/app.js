@@ -11,7 +11,7 @@ import {
     Register,
     Reviews,
     Users
-} from "./Components";
+} from "./Components/Index";
 
 const App = () => {
 
