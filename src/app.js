@@ -27,6 +27,10 @@ const App = () => {
         setProducts(products);
     };
 
+    /*const fetchUser = async = () => {
+
+    }*/
+
     useEffect(() => {
         fetchProducts();
     }, []);
