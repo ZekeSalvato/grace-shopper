@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from "react";
-import { Products } from ".";
+
 
 async function getProducts(){
     try{

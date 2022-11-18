@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/ZekeSalvato/grace-shoppe/api'
+const baseURL = 'http://localhost:3000/ZekeSalvato/grace-shopper/api'
 
 export const registerUser = async (username, password) => {
     try {
