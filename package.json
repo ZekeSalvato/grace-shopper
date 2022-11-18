@@ -1,7 +1,7 @@
 {
   "name": "tu-11-1",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon index.js",
@@ -10,6 +10,7 @@
     "build": "react-scripts build",
     "webpack": "webpack"
   },
+  "proxy": "http://localhost:3001",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "path": "^0.12.7",
     "pg": "^8.8.0",
     "querystring-es3": "^0.2.1",
     "react": "^18.2.0",
@@ -34,14 +36,6 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZekeSalvato/grace-shopper.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ZekeSalvato/grace-shopper/issues"
-  },
-  "homepage": "https://github.com/ZekeSalvato/grace-shopper#readme",
   "description": "",
   "browserslist": {
     "production": [

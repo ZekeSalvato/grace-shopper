@@ -22,7 +22,8 @@ const App = () => {
     const [token, setToken] = useState('');
 
     const fetchProducts = async () => {
-        const response = await fetch("./api/products");
+        const response = await fetch("http://localhost:3001/api/products");
+        console.log(response)
         const { products } = await response.json();
         setProducts(products);
     };
@@ -31,9 +32,9 @@ const App = () => {
 
     }*/
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
+    // useEffect(() => {
+    //     fetchProducts();
+    // }, []);
 
     return(
         <div>
