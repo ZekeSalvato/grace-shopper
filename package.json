@@ -10,7 +10,7 @@
     "build": "react-scripts build",
     "webpack": "webpack"
   },
-  "proxy": "http://localhost:3001",
+  
   "keywords": [],
   "author": "",
   "license": "ISC",

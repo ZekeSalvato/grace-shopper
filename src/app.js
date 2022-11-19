@@ -22,7 +22,7 @@ const App = () => {
     const [token, setToken] = useState('');
 
     const fetchProducts = async () => {
-        const response = await fetch("http://localhost:3001/api/products");
+        const response = await fetch("http://localhost:3000/api/products");
         console.log(response)
         const { products } = await response.json();
         setProducts(products);
@@ -38,10 +38,11 @@ const App = () => {
 
     return(
         <div>
+            <Navbar token={token} />
         <Routes>
             <Route path="/" element={<Home />}/>
 
-            <Route path="/login">
+            <Route path="/login" element={
                 <Login username = {username}
                 setUsername = {setUsername}
                 password = {password}
@@ -49,9 +50,10 @@ const App = () => {
                 user = {user}
                 setUser = {setUser}
                 />
-            </Route>
+            }/>
+            
 
-            <Route path="/register">
+            <Route path="/register" element ={
                 <Register 
                 username = {username}
                 setUsername = {setUsername}
@@ -59,14 +61,14 @@ const App = () => {
                 setPassword = {setPassword}
                 setUser = {setUser}
                 />
-            </Route>
+            }/>
 
-            <Route path="/products">
+            <Route path="/products" element= {
                 <Products 
                 products = {products}
                 setProducts = {setProducts}
                 />
-            </Route>
+            }/>
 
 
 
