@@ -71,6 +71,8 @@ const App = () => {
                 password = {password}
                 setPassword = {setPassword}
                 setUser = {setUser}
+                token = {token}
+                setToken = {setToken}
                 />
             }/>
 

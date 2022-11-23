@@ -38,10 +38,28 @@ usersRouter.post('/', async (req, res, next) => {
     }
 })
 
-usersRouter.post('/login', async(req, res, next) =>{
+usersRouter.post('/register', async (req, res, next) => {
+    const { username, password } = req.body;
+    try {
+          const user = await createUser({ username, password });
+          if (user) {
+            const token = jwt.sign(user, JWT_SECRET);
+            res.send({
+              name: 'RegisterSuccess',
+              message: "you're logged in!",
+              token,
+              user,
+            });
+          }
+        }catch ({ name, message }) {
+            next({ name, message });
+    }
+  });
+
+usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
-        next ({
+        next({
             name: 'MissingCredentialsError',
             message: "Please supply both a username and password"
         });
@@ -49,9 +67,9 @@ usersRouter.post('/login', async(req, res, next) =>{
     try {
         const user = await getUserByUsername(username);
         if (user && user.password == password) {
-            res.send({ message: "you're logged in!", token});
+            res.send({ message: "you're logged in!", token });
         } else {
-            next ({
+            next({
                 name: 'IncorrectCredentialsError',
                 message: 'Username or password is incorrect'
             });

@@ -7,6 +7,7 @@ const Register = ({ setToken, navigate }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
       alert("Password Don't Match")
@@ -14,9 +15,9 @@ const Register = ({ setToken, navigate }) => {
     }
     const results = await registerUser(username, password);
     if (results.token) {
-      setToken(results.token)
+      setToken(results.data.token)
       window.localStorage.setItem('token', results.token)
-      navigate('/')
+      navigate('/profile')
     } else {
       alert('That username is taken')
     }
