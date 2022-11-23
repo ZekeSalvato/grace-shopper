@@ -3,23 +3,27 @@ import React, {useEffect, useState} from "react";
 import { getProducts } from "../api";
 import {Link, useNavigate} from 'react-router-dom';
 
-const Products = (products, navigate) => {
+const Products = ({products}) => {
+    console.log(products)
     const navigate = useNavigate();
-    const [products, setProducts] = useState([])
-    const fetchProd = async () => {
-        const results = await getProducts()
+    // const [products, setProducts] = useState([])
+    // const fetchProd = async () => {
+    //     const results = await getProducts()
 
-     setProducts(results)
-     console.log(products)
+    //  setProducts(results)
+    //  console.log(products)
+    // }
+    // useEffect(() =>{
+    //     fetchProd()
+    // }, [])
+    if (!products) {
+        return null
     }
-    useEffect(() =>{
-        fetchProd()
-    }, [])
     return(
         <div>
             {
                 products.map((product) =>{
-                    const { title, description, price} = product;
+                    const { id, title, description, price} = product;
 
                     return(
                         <div key= {id}>

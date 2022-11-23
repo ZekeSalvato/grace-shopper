@@ -22,19 +22,30 @@ const App = () => {
     const [token, setToken] = useState('');
 
     const fetchProducts = async () => {
-        const response = await fetch("http://localhost:3000/api/products");
-        console.log(response)
-        const { products } = await response.json();
+        try {console.log("in fetchProd, useEff")
+        const response = await fetch("http://localhost:3000/api/products", {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+        console.log("look", response)
+        const products  = await response.json();
+        console.log(products)
         setProducts(products);
+    } catch(error) {
+        console.log(error)
+        
+    }
     };
 
     /*const fetchUser = async = () => {
 
     }*/
 
-    // useEffect(() => {
-    //     fetchProducts();
-    // }, []);
+    useEffect(() => {
+        console.log("in useeffect")
+        fetchProducts();
+    }, []);
 
     return(
         <div>

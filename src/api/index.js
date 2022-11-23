@@ -46,12 +46,20 @@ export const logInUser=async (username, password)=>{
   }
 
  export const getProducts = async () =>{
-    try{
-        const response = await fetch(`localhost://3001/api/products`)
-        const results = await response.json();
-        return results
-    } catch(error){
-        console.log("test")
-        throw error
-    }
+    console.log("in getProd")
+//    try{
+//         const response = await fetch(`localhost://3001/products`, {
+            
+//                 headers: {
+//                   'Content-Type': 'application/json',
+//                 }
+              
+//         })
+//         console.log("response34", response)
+//         const results = await response.json();
+//         return results
+//     } catch(error){ 
+//         console.log("test")
+//         throw error
+//     }
 }
