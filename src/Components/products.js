@@ -1,8 +1,10 @@
 
 import React, {useEffect, useState} from "react";
-// import { Products } from ".";
+import { getProducts } from "../api";
+import {Link, useNavigate} from 'react-router-dom';
 
-const Products = () => {
+const Products = (products, navigate) => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([])
     const fetchProd = async () => {
         const results = await getProducts()
@@ -14,20 +16,28 @@ const Products = () => {
         fetchProd()
     }, [])
     return(
-        <div>Hello World</div>
+        <div>
+            {
+                products.map((product) =>{
+                    const { title, description, price} = product;
+
+                    return(
+                        <div key= {id}>
+                            <h3>{title}</h3>
+                            <p className="description"> Description: {description}</p>
+                            <p>Price: {price}</p>
+                            {/* {
+                                add ternary operator for admin priveleges
+                            } */}
+                        </div>
+                    )
+                })
+            }
+        </div>
     )
 }
 
-async function getProducts(){
-    try{
-        const response = await fetch(`localhost://3001/api/products`)
-        const results = await response.json();
-        return results
-    } catch(error){
-        console.log("test")
-        throw error
-    }
-}
+
 
 
 export default Products;

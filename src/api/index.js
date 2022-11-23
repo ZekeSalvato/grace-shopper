@@ -44,3 +44,14 @@ export const logInUser=async (username, password)=>{
       console.log('error logging in user')
     }
   }
+
+ export const getProducts = async () =>{
+    try{
+        const response = await fetch(`localhost://3001/api/products`)
+        const results = await response.json();
+        return results
+    } catch(error){
+        console.log("test")
+        throw error
+    }
+}
