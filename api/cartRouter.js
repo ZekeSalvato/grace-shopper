@@ -3,9 +3,16 @@ const {getCart, updateCart, removeFromCart} = require('../db/cart')
 const cartRouter = express.Router();
 
 //require token on login?
-cartRouter.get('/', async(req, res, next) => {
-    const cart = await getCart();
-  res.send(cart)
+cartRouter.get('/:cartId', async(req, res)=> {
+    try{
+        const{ cartId } = req.params
+        const carts = await getCart(cartId)
+        res.send({
+            carts
+        });
+    } catch(error) {
+        throw error;
+    }
 });
 
 cartRouter.patch('/', async(req, res, next) =>{
