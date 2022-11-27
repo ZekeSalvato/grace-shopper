@@ -5,7 +5,21 @@ const jwt = require('jsonwebtoken');
 
 const usersRouter = express.Router();
 
-const { createUser, getUser, getUserByUsername, getUserById } = require('../db/users')
+const { createUser, getUser, getUserByUsername, getUserById, fetchAllUsers} = require('../db/users')
+
+usersRouter.get('/', async (req, res, next) => {
+    try {
+      console.log("await getallusers()")
+      const users = await fetchAllUsers();
+      console.log(users)
+      res.send(users)
+    }
+    catch (error) {
+      console.log(error)
+      throw error
+    }
+  })
+
 //need to put correct component links
 usersRouter.post('/', async (req, res, next) => {
     const { username, password } = req.body;
@@ -78,12 +92,6 @@ usersRouter.post('/login', async (req, res, next) => {
         console.log(error);
         next(error);
     }
-})
-
-usersRouter.get('/', (req, res, next) => {
-
-
-    res.send('LIST OF USERS')
 })
 
 module.exports = usersRouter;

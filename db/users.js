@@ -44,6 +44,8 @@ async function getUser({ username, password }) {
       }
     }
   }
+
+  
   
   async function getUserById(userId) {
     
@@ -63,6 +65,22 @@ async function getUser({ username, password }) {
         throw error;
     }
   }
+
+  async function fetchAllUsers(){
+    console.log("fetch users")
+    try {
+      const {rows} = await client.query(`
+        SELECT *
+        FROM users;
+      `)
+        console.log("done with query")
+      return rows;
+    } catch(error){
+      console.log(error)
+      throw error
+    }
+  }
+  
   
   async function getUserByUsername(username) {
     try {
@@ -87,5 +105,6 @@ async function getUser({ username, password }) {
     createUser,
     getUser,
     getUserById,
-    getUserByUsername,
+    fetchAllUsers,
+    getUserByUsername
   }
