@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 
-const Register = ({ setToken, navigate }) => {
+const Register = ({ setToken }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
@@ -15,9 +17,9 @@ const Register = ({ setToken, navigate }) => {
     }
     const results = await registerUser(username, password);
     if (results.token) {
-      setToken(results.data.token)
+      setToken(results.token)
       window.localStorage.setItem('token', results.token)
-      navigate('/profile')
+      navigate('/')
     } else {
       alert('That username is taken')
     }

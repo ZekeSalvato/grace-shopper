@@ -1,11 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-
-
-
+const { requireUser } = require('./utils');
 const usersRouter = express.Router();
-
-const { createUser, getUser, getUserByUsername, getUserById, fetchAllUsers} = require('../db/users')
+const bcrypt = require('bcrypt');
+const { createUser, loginUser, getUser, getUserByUsername, getUserById, checkIfUserExists, fetchAllUsers} = require('../db/users')
 
 usersRouter.get('/', async (req, res, next) => {
     try {
@@ -18,80 +16,69 @@ usersRouter.get('/', async (req, res, next) => {
       console.log(error)
       throw error
     }
-  })
+})
 
-//need to put correct component links
-usersRouter.post('/', async (req, res, next) => {
-    const { username, password } = req.body;
-
-    try {
-        const _user = await getUserByUsername(username);
-        if (_user) {
-            next({
-                name: "UserExistsError",
-                message: "A user by that username already exists"
-            });
-        }
-        const user = await createUser({
-            username, password
-        })
-
-        const token = jwt.sign({
-            id: user.id,
-            username
-        }, process.env.JWT_SECRET, {
-            expiresIn: '1W'
-        })
-        res.send({
-            message: "Thank you for signing up!",
-            token
-        })
+usersRouter.get('/me', requireUser, async (req, res, next) => {
+    try{
+    const user = req.user;
+    res.send(user)
     } catch (error) {
-        console.log("Failed to make account")
-        throw error
+        console.log(error)
+        throw error;
     }
 })
 
 usersRouter.post('/register', async (req, res, next) => {
-    const { username, password } = req.body;
     try {
-          const user = await createUser({ username, password });
-          if (user) {
-            const token = jwt.sign(user, JWT_SECRET);
-            res.send({
-              name: 'RegisterSuccess',
-              message: "you're logged in!",
-              token,
-              user,
-            });
-          }
-        }catch ({ name, message }) {
-            next({ name, message });
+      const { username, password, isAdmin } = req.body;
+      const checkUser = await checkIfUserExists(username);
+      console.log(checkUser);
+      if (checkUser && checkUser.username === username) {
+        res.status(500).send({
+          name: 'Username Taken',
+          message: 'UsernameTakenError',
+          error: 'UsernameTakenError',
+        });
+      } else {
+        const user = await createUser({username, password, isAdmin});
+        const token = jwt.sign({ 
+            id: user.id,
+            username
+         }, `${process.env.JWT_SECRET_KEY}`)
+        res.send({ name: 'RegisterSuccess', message: 'Successfully registered', user, token});
+      }
+    } catch (error) {
+      console.error('API register error');
+      next(error);
     }
   });
 
-usersRouter.post('/login', async (req, res, next) => {
+  usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
+  
     if (!username || !password) {
-        next({
-            name: 'MissingCredentialsError',
-            message: "Please supply both a username and password"
-        });
+      res.send({
+        name: 'MissingCredentialsError',
+        message: 'Please supply both a username and password'
+      });
     }
+  
     try {
-        const user = await getUserByUsername(username);
-        if (user && user.password == password) {
-            res.send({ message: "you're logged in!", token });
-        } else {
-            next({
-                name: 'IncorrectCredentialsError',
-                message: 'Username or password is incorrect'
-            });
-        }
+      const user = await getUser({username, password});
+      if(!user) {
+        res.send({
+          name: 'IncorrectCredentialsError',
+          message: 'Username or password is incorrect',
+        })
+      } else {
+        const token = jwt.sign({id: user.id, username: user.username}, JWT_SECRET, { expiresIn: '1w' });
+        res.send({ user, message: "you're logged in!", token });
+      }
     } catch (error) {
-        console.log(error);
-        next(error);
+      next(error);
     }
-})
+  });
+  
+
 
 module.exports = usersRouter;

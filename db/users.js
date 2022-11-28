@@ -8,7 +8,7 @@ async function createUser({username, password}) {
             INSERT INTO users (username, password)
             VALUES ($1, $2) 
             ON CONFLICT  (username) DO NOTHING
-            RETURNING id, username;
+            RETURNING id, username, password;
         `, [username, password]);
 
         return user;
@@ -80,9 +80,30 @@ async function getUser({ username, password }) {
       throw error
     }
   }
+
+  async function checkIfUserExists(username) {
+    try {
+      const {
+        rows: [user],
+      } = await client.query(
+        `
+        SELECT username
+        FROM users
+        WHERE username=$1;
+        
+      `,
+        [username]
+      );
+  
+      return user;
+    } catch (error) {
+      console.error('Error checking if user exists');
+      throw error;
+    }
+  }
   
   
-  async function getUserByUsername(username) {
+  async function getUserByUsername(userName) {
     try {
       const {
         rows: [user],
@@ -92,7 +113,7 @@ async function getUser({ username, password }) {
         FROM users
         WHERE username=$1;
       `,
-        [username]
+        [userName]
       );
   
       return user;
@@ -106,5 +127,6 @@ async function getUser({ username, password }) {
     getUser,
     getUserById,
     fetchAllUsers,
+    checkIfUserExists,
     getUserByUsername
   }
