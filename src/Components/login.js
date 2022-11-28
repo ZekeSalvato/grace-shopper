@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import { logInUser } from '../api';
+import { useNavigate  } from 'react-router-dom';
 
-const Login = ({ setToken, navigate}) => {
+const Login = ({ setToken }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
         const results = await logInUser(username, password);
-        if (results.success) {
-            setToken(results.data.token);
-            window.localStorage.setItem('token', results.data.token);
-            navigate('/profile')
+        if (results.token) {
+            setToken(results.token);
+            window.localStorage.setItem('token', results.token);
+            navigate('/')
         } else {
             return
         }

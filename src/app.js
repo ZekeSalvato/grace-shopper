@@ -38,6 +38,13 @@ const App = () => {
     }
     };
 
+    function logout() {
+        window.localStorage.removeItem('token');
+        setToken('')
+        setUser({});
+        navigate('/')
+    }
+
     /*const fetchUser = async = () => {
 
     }*/
@@ -49,9 +56,14 @@ const App = () => {
 
     return(
         <div>
-            <Navbar token={token} />
+         <Navbar 
+            token={token}
+            logout={logout} 
+            user={user} />
         <Routes>
-            <Route path="/" element={<Home />}/>
+            <Route path="/" element={<Home
+                    logout={logout}
+                    />}/>
 
             <Route path="/login" element={
                 <Login username = {username}
