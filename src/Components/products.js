@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { TextField } from "@mui/material";
+import { getProducts } from "../api";
 
 const Products = ({ products, navigate }) => {
     
