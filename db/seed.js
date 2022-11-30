@@ -47,6 +47,13 @@ async function createTables() {
         quantity INTEGER NOT NULL
       );
 
+      CREATE TABLE reviews (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id),
+        rating INTEGER NOT NULL,
+        CHECK(rating <= 10)
+      );
+
     `)
     
     console.log('Finished Creating Tables')
