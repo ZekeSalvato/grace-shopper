@@ -1,0 +1,63 @@
+#loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    background-image: url(login.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 700px;
+    border-radius: 10px;
+    width: 1400px;
+}
+
+#loginForm h1 {
+    font-family: monospace;
+    font-size: xx-large;
+    text-shadow: 0px 7px 8px black;
+    color: white;
+}
+
+#loginForm input {
+    display: flex;
+    flex-direction: column;
+    height: 23px;
+    width: 200px;
+    margin-bottom: 18px;
+    padding: 5px;
+    color: black;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: palevioletred;
+    box-shadow: 5px 8px palevioletred;
+    outline: none;
+}
+
+#signUp{
+    text-decoration: none;
+    border-style: solid;
+    border-radius: 8px;
+    padding: 6px;
+    color: grey;
+    background-color: white;
+    border-color: palevioletred;
+    box-shadow: 2px 4px palevioletred;
+    margin-top: 30px;
+}
+
+#loginForm button{
+    padding: 1.5px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: palevioletred;
+    box-shadow: 2px 4px palevioletred;
+    background-color: white;
+    height: 25px;
+    width: 100px;
+    text-align: center;
+    color: grey;
+}
+
