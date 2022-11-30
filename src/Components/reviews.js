@@ -42,4 +42,4 @@ const Reviews = ({ reviews }) => {
     )
 }
 
-export default reviews;
+export default Reviews;
