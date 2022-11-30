@@ -51,7 +51,7 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id),
         rating INTEGER NOT NULL,
-        CHECK(rating <= 10)
+        CHECK(rating <= 5)
       );
 
     `)
