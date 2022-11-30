@@ -2,9 +2,10 @@ import React from "react";
 
 import './CSS/Cart.css';
 
-const Cart = (props) => {
+const Cart = () => {
     return(
-        <div className="usersCart">
+        <div id="cartCard">
+            <h2>🛍  Shopping Cart</h2>
             
         </div>
     )
