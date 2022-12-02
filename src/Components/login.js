@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { logInUser } from '../api';
 import { useNavigate, Link  } from 'react-router-dom';
+import "./CSS/Login.css";
+
 
 const Login = (props) => {
     const { setToken } = props;
@@ -20,7 +22,7 @@ const Login = (props) => {
     }
     return (
         <div id="loginForm">
-      <h1 id="loginHead">Log In</h1>
+      <h1 id="loginHead">LOGIN</h1>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Username"
@@ -33,9 +35,10 @@ const Login = (props) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit">Log In</button>
-        <Link to={"/register"}>Sign up</Link>
+        <button type="submit">Submit</button>
       </form>
+      
+      <Link id='signUp'  to={"/register"}>Sign Up</Link>
     </div>
     )
 }
