@@ -5,8 +5,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon index.js",
+    "seed": "node ./db/seed.js",
     "seed:dev": "nodemon ./db/seed.js",
-    "start": "react-scripts start",
+    "start:dev": "react-scripts start",
+    "start": "node index.js",
     "build": "react-scripts build",
     "webpack": "webpack"
   },
