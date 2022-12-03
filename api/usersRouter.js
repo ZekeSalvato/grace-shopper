@@ -55,7 +55,7 @@ usersRouter.post('/register', async (req, res, next) => {
 
   usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
-  
+    console.log("inside api Login", username, password)
     if (!username || !password) {
       res.send({
         name: 'MissingCredentialsError',
@@ -71,7 +71,7 @@ usersRouter.post('/register', async (req, res, next) => {
           message: 'Username or password is incorrect',
         })
       } else {
-        const token = jwt.sign({id: user.id, username: user.username}, JWT_SECRET, { expiresIn: '1w' });
+        const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, { expiresIn: '1w' });
         res.send({ user, message: "you're logged in!", token });
       }
     } catch (error) {

@@ -27,6 +27,15 @@ server.use((req, res, next) => {
 const apiRouter = require('./api');
 server.use('/api', apiRouter);
 
+apiRouter.use((error, req, res, next) => {
+    
+  res.send({
+    error: error.error,
+    name: error.name,
+    message: error.message
+  });
+});
+
 server.listen(PORT, async () => {
   console.log(`Server is up and running on port ${PORT}`)
   try {

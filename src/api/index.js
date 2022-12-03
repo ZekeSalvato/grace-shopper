@@ -20,10 +20,12 @@ export const registerUser = async (username, password) => {
         return results;
     } catch (err) {
         console.log('Error registering user')
+        throw err
     }
 };
 
 export const logInUser=async (username, password)=>{
+  console.log("Inside Login User")
     try{
         const response= await fetch(`${baseURL}/users/login`,{
         method: "POST",
@@ -38,10 +40,13 @@ export const logInUser=async (username, password)=>{
     })
   })
      const result= await response.json();
+     console.log(response)
      return result;
      
     } catch(ex){
       console.log('error logging in user')
+      console.log(ex)
+      throw ex;
     }
   }
 

@@ -72,6 +72,7 @@ const App = () => {
                 setPassword = {setPassword}
                 user = {user}
                 setUser = {setUser}
+                setToken={ setToken }
                 />
             }/>
             
@@ -84,7 +85,7 @@ const App = () => {
                 setPassword = {setPassword}
                 setUser = {setUser}
                 token = {token}
-                setToken = {setToken}
+                setToken = { setToken }
                 />
             }/>
 
