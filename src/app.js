@@ -95,12 +95,20 @@ const App = () => {
                 />
             }/>
 
-            <Route path="/cart" 
-                    element= {
-                <Cart />
-            } />
+            <Route path="/products/:productId" element= {
+                <ProductView
+                products ={products}
+                user = {user}
+                // fetchAllUserCartItems ={fetchAllUserCartItems}
+                // navigate = {navigate}
+                />
+            }/>
 
+            <Route path="/cart" element= {
+                <Cart
 
+                />
+            }/>
 
         </Routes>
         </div>

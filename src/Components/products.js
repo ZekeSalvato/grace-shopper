@@ -2,11 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { TextField } from "@mui/material";
 import { getProducts } from "../api";
+import {
+    Paper,
+    Button,
+    Card,
+    CardContent,
+    Grid,
+} from '@mui/material';
 
 const Products = ({ products, navigate }) => {
-    
+
     const [searchTerm, setSearchTerm] = useState('');
-    
+    const paperStyle = {
+        padding: 20,
+        width: 350,
+        margin: '1rem auto'
+    }
+
     const productMatches = (product, string) => {
         const { title, description, id, price } = product;
         title.toLowerCase();
@@ -20,56 +32,61 @@ const Products = ({ products, navigate }) => {
 
     const productsToDisplay = searchTerm.length ? filteredProducts : products;
     return (
-        <div className = 'allProductsPresent'>
-            <div className = 'searchProductsContainer'>
+        <div className='allProductsPresent'>
+            <div className='searchProductsContainer'>
                 <form
-                    className = 'searchForm'
-                    onSubmit = {(event) => {
+                    className='searchForm'
+                    onSubmit={(event) => {
                         event.preventDefault();
                     }}>
-                        <div className = 'returnedContentForm'>
-                            <h3 className = 'searchBarHeader'>Search Products Here</h3>
-                            <TextField
-                                id = "standard-basic"
-                                label = "(ex: title, description)"
-                                variant = "standard"
-                                className = 'userSearchInput'
-                                type = 'text'
-                                onChange = {(event) => setSearchTerm(event.target.value)} 
-                            />
-                        </div>
+                    <div className='returnedContentForm'>
+                        <h3 className='searchBarHeader'>Search Products Here</h3>
+                        <TextField
+                            id="standard-basic"
+                            label="(ex: title, description)"
+                            variant="standard"
+                            className='userSearchInput'
+                            type='text'
+                            onChange={(event) => setSearchTerm(event.target.value)}
+                        />
+                    </div>
                 </form>
             </div>
-        <div className = 'allProducts'>
-            {
-                products ? (
-                    productsToDisplay.map((product) => {
-                        const { title, description, id, price } = product;
-                        return (
-                            <div
-                            key = { id }
-                            className = 'productBox'>
-                                {/* {
-                                    image == "" ? (
-                                        <img className = 'productImage' src = { temp } />
-                                    ) : (
-                                        <img className = 'productImage' src = {image} onClick = {() => navigate(`/products/${id}`)}/>
-                                    )
-                                } */}
-                                <p>{ title }</p>
-                                <p>{ price }</p>
-                                <Link to = {`/products/${id}`}>View</Link>
-                            </div>
-                        )
+            <div className='allProducts'>
+                {
+                    products ? (
+                        productsToDisplay.map((product) => {
+                            const { title, description, id, price } = product;
+                            return (
+                                <div key={id} className='productBox'>
+                                    <Grid
+                                        container
+                                        gap={'20rem'}
+                                        direction='row'
+                                        alignItems='flex-start'
+                                        justifyContent='center'
+                                        justify='flex-start'>
+                                        <Paper elevation={10} style={paperStyle}>
+                                            <Card>
+                                                <CardContent>
+                                                    <h3>{title}</h3>
+                                                    <p>{price}</p>
+                                                    <Link to={`/products/${id}`}>View</Link>
+                                                </CardContent>
+                                    </Card>
+                                </Paper>
+                            </Grid>
+                        </div>
+                                            )
                     })
-                ) : (
-                    <p></p>
-                )
+                                            ) : (
+                                            <p></p>
+                                            )
             }
-        </div>
-        </div>
-    )
-}
+                                        </div>
+                                </div>
+                            )
+                        }
 
 export default Products;
 
