@@ -1,9 +1,9 @@
 const { Client } = require('pg');
 
-const { DATABASE_URL } = process.env;
+const connectionURL = process.env.DATABASE_URL || 'postgres://localhost:5432/graceshopperdb'
 
 const client = new Client({
-  connectionString: DATABASE_URL
+  connectionString: connectionURL
 })
 
 module.exports = { client, 
