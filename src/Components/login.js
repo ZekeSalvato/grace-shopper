@@ -21,25 +21,20 @@ const Login = (props) => {
         }
     }
     return (
-        <div id="loginForm">
-      <h1 id="loginHead">LOGIN</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Username"
-          value={username}
+      <form className='Login' onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit();
+      }}>
+        <TextField className='enterLoginUsername'
+          label='username'
           onChange={(event) => setUsername(event.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
+        <TextField className='enterLoginPassword'
+          label='password'
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit">Submit</button>
+        <Button type='submit'>Submit</Button>
       </form>
-      
-      <Link id='signUp'  to={"/register"}>Sign Up</Link>
-    </div>
     )
 }
 
