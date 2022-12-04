@@ -24,7 +24,7 @@ export const registerUser = async (username, password) => {
     }
 };
 
-export const logInUser=async (username, password)=>{
+export const loginUser=async (username, password)=>{
   console.log("Inside Login User")
     try{
         const response= await fetch(`${baseURL}/users/login`,{
@@ -33,10 +33,8 @@ export const logInUser=async (username, password)=>{
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      user: {
         username,
-        password 
-      }
+        password
     })
   })
      const result= await response.json();
