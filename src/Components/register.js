@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api';
-import { useNavigate, Link } from 'react-router-dom';
-import "./CSS/Register.css";
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = ({ setToken }) => {
 
@@ -25,33 +25,71 @@ const Register = ({ setToken }) => {
     }
   }
   return (
-    <div id='loginForm'>
-      <h1 id='loginHead'>Register</h1>
-      <form onSubmit={(event) => {
-        event.preventDefault();
-        handleSubmit();
-      }}>
-        <input
-          type='text'
-          placeholder="Enter Username"
-          onChange={(event) => setUsername(event.target.value)}
-        />
-        <input
-          type='password'
-          placeholder="Enter Password"
-          onChange={(event) => setPassword(event.target.value)} />
-        <input
-          type='password'
-          placeholder="Confirm Password"
-          onChange={(event) => setConfirmPassword(event.target.value)} />
-        <button
-          id='button'
-          type='submit'>
-          Register
-        </button>
-      </form>
-      <Link id='signUp' to={"/Login"}>Already Have an Account? Login Here!</Link>
-
+    <div>
+        <form onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmit();
+        }}>
+          <div
+            align='center'
+            className='loginAndRegisterHeading'>
+            <h2>Register</h2>
+          </div>
+          <input
+            style={{ marginBottom: '.75rem' }}
+            type='text'
+            label='Enter Username'
+            inputProps={{
+              minLength: 4,
+              maxLength: 16,
+            }}
+            fullWidth
+            placeholder="Enter Username"
+            required
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <input
+            style={{ marginBottom: '.75rem' }}
+            type='password'
+            label='Enter Password'
+            inputProps={{
+              minLength: 8,
+              maxLength: 16,
+            }}
+            fullWidth
+            placeholder="Enter Password"
+            required
+            onChange={(event) => setPassword(event.target.value)} />
+          <input
+            style={{ marginBottom: '.75rem' }}
+            type='password'
+            label='Confirm Password'
+            inputProps={{
+              minLength: 8,
+              maxLength: 16,
+            }}
+            fullWidth
+            placeholder="Confirm Password"
+            required
+            onChange={(event) => setConfirmPassword(event.target.value)} />
+          <h4>Password Requirements:</h4>
+            <ul>
+                <li>At least 8 characters</li>
+                <li>No more than 16 characters</li>
+                
+            </ul>
+          <button
+            type='submit'
+            color='primary'
+            variant='contained'
+            fullWidth
+            style={{
+              color: '#646C79',
+              backgroundColor: '#FB9039'
+            }}>
+            Register
+          </button>
+        </form>
     </div>
   )
 }

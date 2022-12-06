@@ -3,31 +3,29 @@ const client = require("./client");
 
 async function getCart(id){
     try{
-        const{ rows: [product] } = await client.query(
+        const{ rows: cart } = await client.query(
             `
             SELECT * 
-            FROM products
-            WHERE id=$1
+            FROM cart
+            JOIN products ON cart."productId" = products.id
+            WHERE cart."userId" = $1
             `, [id]
         )
-        return product;
+        return cart;
     }catch(error){
         throw error;
     }
 }
 
-/*async function createCart(){
 
-}*/
-// add to cart may be addproduct to cart in products.js
-async function addToCart(productId , quantity){
+async function addToCart(productId, quantity, userId){
     try{
         const{rows: [addProductToCart]} = await client.query(
             `
-            INSERT INTO cart("productId", quantity)
-            VALUES ($1,$2)
+            INSERT INTO cart("productId", quantity, "userId")
+            VALUES ($1,$2, $3)
             RETURNING *;
-            `, [productId, quantity]
+            `, [productId, quantity, userId]
         );
         return addProductToCart;
     }catch(error){
@@ -37,15 +35,15 @@ async function addToCart(productId , quantity){
 
 
 
-async function removeFromCart(productId){
+async function removeFromCart(id){
     try{
         const{
             rows: result
         } = await client.query(
             `
-            DELETE FROM cart WHERE id = ${productId};
+            DELETE FROM cart WHERE id = $1;
 
-            `, [productId]
+            `, [id]
         );
         return result;
     }catch(error){
@@ -53,12 +51,13 @@ async function removeFromCart(productId){
     }
 }
 
-async function updateCart(productId, quantity){
+async function updateCart(id, quantity){
     try{
         const{rows: [updatedCart]} = await client.query(
             `
-            UPDATE cart SET quantity WHERE id=${productId}
-            `,[productId, quantity]
+            UPDATE cart SET quantity= $2
+            WHERE id=$1
+            `,[id, quantity]
         );
         return updatedCart;
     }catch(error){

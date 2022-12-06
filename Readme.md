@@ -15,3 +15,7 @@ Scout: cart sidebar
 need to refine things in db and api,
 post refinement: start working on frontend (src, components, webpage),
 group discussion of project milestones
+
+*** Talk With Luc ***
+
+make sure have isAdmin middleware for a token to update products list
