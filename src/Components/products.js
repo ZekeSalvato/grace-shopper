@@ -68,7 +68,8 @@ const Products = ({ products, navigate }) => {
                                         alignItems='flex-start'
                                         justifyContent='center'
                                         justify='flex-start'
-                                        margin='1rem'>                                        <Card sx={{ display: 'flex' }}>
+                                        margin='1rem'>
+                                        <Card  variant="outlined" sx={{ display: 'flex' }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
                                                 <CardContent sx={{ flex: '1 0 auto' }}>
@@ -81,13 +82,14 @@ const Products = ({ products, navigate }) => {
                                                 </CardContent>
                                             </Box>
                                             <CardMedia
+                                                id='mediaID'
                                                 component="img"
                                                 sx={{ width: 151 }}
                                                 image={image}
                                                 alt="Live from space album cover"
                                             />
                                             <CardActions>
-                                            <Link to={`/products/${id}`}>View</Link>
+                                                <Link to={`/products/${id}`}>View</Link>
                                             </CardActions>
                                         </Card>
                                     </Grid>
