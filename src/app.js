@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, useNavigate} from "react-router-dom";
 import {
     Cart,
     Home,
@@ -20,7 +20,7 @@ const App = () => {
     const [password, setPassword] = useState('');
     const [user, setUser] = useState({});
     const [token, setToken] = useState('');
-
+    const navigate= useNavigate();
     const fetchProducts = async () => {
         try {console.log("in fetchProd, useEff")
         const response = await fetch("http://localhost:3000/api/products", {
@@ -73,10 +73,14 @@ const App = () => {
                 user = {user}
                 setUser = {setUser}
                 setToken={ setToken }
+                navigate={navigate}
                 />
             }/>
             
-
+            <Route path='/profile' element={
+                <Profile
+                user={user} />}
+            />
             <Route path="/register" element ={
                 <Register 
                 username = {username}
@@ -107,7 +111,7 @@ const App = () => {
 
             <Route path="/cart" element= {
                 <Cart
-
+                // token={token}
                 />
             }/>
 

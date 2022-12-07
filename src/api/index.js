@@ -66,3 +66,77 @@ export const loginUser=async (username, password)=>{
 //         throw error
 //     }
 }
+
+export const getCart = async (token) =>{
+  try{
+    const response = await fetch(`${baseURL}/cart`, {
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+    
+  })
+  const results = await response.json()
+  return results
+  } catch(error){
+
+    throw error
+  }
+}
+
+export const addToCart = async (productId, quantity, token) =>{
+  try{
+    const response = await fetch(`${baseURL}/cart`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+              quantity, productId
+      })
+  })
+  const results = await response.json()
+  return results
+  } catch(error){
+
+    throw error
+  }
+}
+
+export const removeFromCart = async (id) =>{
+  try{
+    const response = await fetch(`${baseURL}/cart`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({id})
+  })
+  const results = await response.json()
+  return results
+
+  } catch(error) {
+
+    throw error
+  }
+}
+
+export const updateCart = async (id, quantity) =>{
+  try{
+    const response = await fetch(`${baseURL}/cart`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({id, quantity})
+  })
+  const results = await response.json()
+  return results
+  }catch(error){
+
+    throw error
+  }
+}

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import "./CSS/Login.css";
 
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, navigate }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+
 
     const handleSubmit = async () => {
         const results = await loginUser(username, password);

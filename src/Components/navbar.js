@@ -9,7 +9,8 @@ import {
     Button,
 } from '@mui/material';
 
-const Navbar = ({ logout, token }) => {
+const Navbar = ({ logout}) => {
+    const token = window.localStorage.getItem('token')
     return (
         <AppBar
             position='static'
@@ -31,7 +32,7 @@ const Navbar = ({ logout, token }) => {
                         justifyContent="flex-end"
                         alignItems="flex-end">
                         <Typography>
-                        <Link to='/'>Home</Link>
+                            <Link to='/'>Home</Link>
 
                             <Link to='/profile'>Profile</Link>
                             <Link to='/products'>Products</Link>
