@@ -39,7 +39,7 @@ const Navbar = ({ logout}) => {
                             <Link to='/cart'>Cart</Link>
 
                             {token ? (
-                                <Link to='/home' onClick={() => logout()}>Logout</Link>
+                                <Link to='/' onClick={() => logout()}>Logout</Link>
                             ) : (
                                 <>
                                     <Link to='/login'>Login</Link>

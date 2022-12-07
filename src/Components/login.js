@@ -18,7 +18,6 @@ const Login = ({ setToken, navigate }) => {
             window.localStorage.setItem('token', results.token);
             navigate('/');
         } else {
-
             console.log(results.error.message)
             return
         }
