@@ -9,19 +9,18 @@ import {
     Card,
     CardContent,
     Grid,
+    Box,
+    Typography,
+    CardMedia,
+    CardActions
 } from '@mui/material';
 
 const Products = ({ products, navigate }) => {
 
     const [searchTerm, setSearchTerm] = useState('');
-    const paperStyle = {
-        padding: 20,
-        width: 350,
-        margin: '1rem auto'
-    }
 
     const productMatches = (product, string) => {
-        const { title, description, id, price } = product;
+        const { title, description, id, price, image } = product;
         title.toLowerCase();
 
         if ((title.toLowerCase().includes(string)) || description.toLowerCase().includes(string)) {
@@ -58,37 +57,51 @@ const Products = ({ products, navigate }) => {
                 {
                     products ? (
                         productsToDisplay.map((product) => {
-                            const { title, description, id, price } = product;
+                            const { title, description, id, price, image } = product;
+                            console.log(product, product.image)
                             return (
-                                <div key={id} className='productBox'>
+                                <div key={id} id='productList'>
                                     <Grid
                                         container
                                         gap={'20rem'}
                                         direction='row'
                                         alignItems='flex-start'
                                         justifyContent='center'
-                                        justify='flex-start'>
-                                        <Paper elevation={10} style={paperStyle}>
-                                            <Card>
-                                                <CardContent>
-                                                    <h3>{title}</h3>
-                                                    <p>{price}</p>
-                                                    <Link to={`/products/${id}`}>View</Link>
+                                        justify='flex-start'
+                                        margin='1rem'>                                        <Card sx={{ display: 'flex' }}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                                    <Typography component="div" variant="h5">
+                                                        {title}
+                                                    </Typography>
+                                                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                                                        ${price}
+                                                    </Typography>
                                                 </CardContent>
-                                    </Card>
-                                </Paper>
-                            </Grid>
-                        </div>
-                                            )
-                    })
-                                            ) : (
-                                            <p></p>
-                                            )
-            }
-                                        </div>
+                                            </Box>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ width: 151 }}
+                                                image={image}
+                                                alt="Live from space album cover"
+                                            />
+                                            <CardActions>
+                                            <Link to={`/products/${id}`}>View</Link>
+                                            </CardActions>
+                                        </Card>
+                                    </Grid>
                                 </div>
                             )
-                        }
+                        })
+                    ) : (
+                        <p></p>
+                    )
+                }
+            </div>
+        </div>
+    )
+}
 
 export default Products;
 

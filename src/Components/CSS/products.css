@@ -17,3 +17,9 @@ h1 {
     background-position: center;
     background-size: auto;
 }
+
+#productList {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}

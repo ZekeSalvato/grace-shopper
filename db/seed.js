@@ -34,7 +34,7 @@ async function createTables() {
         title VARCHAR(255),
         description VARCHAR(255),
         price INTEGER,
-        "image" VARCHAR(255)
+        image VARCHAR(255)
       );
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
