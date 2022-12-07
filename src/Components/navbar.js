@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { Box } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import { Menu, MenuIcon } from '@mui/material';
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 
@@ -21,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1
     },
-    customColor: {
-        // or hex code, this is normal CSS background-color
-        backgroundColor: green[500]
-    },
     customHeight: {
         minHeight: 200
     },
@@ -34,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = ({ logout, token }) => {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const settings = [<Link to={"/profile"}>Profile</Link>     ,    <Link to={"/"} onClick={() => logout()} >Logout</Link> ];
+    const profileDropdowns = [<Link to={"/profile"}>Profile</Link>     ,    <Link to={"/"} onClick={() => logout()} >Logout</Link> ];
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -89,9 +83,9 @@ const Navbar = ({ logout, token }) => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                {profileDropdowns.map((profileDropdown) => (
+                                    <MenuItem key={profileDropdown} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{profileDropdown}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
