@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProducts } from "../api";
+import { addToCart } from '../api';
 
-const ProductView = ({ products, user, fetchAllUserCartItems, navigate }) => {
+const ProductView = ({ products, user, navigate }) => {
     const { productId } = useParams();
 
     if (products.length) {
@@ -13,17 +14,11 @@ const ProductView = ({ products, user, fetchAllUserCartItems, navigate }) => {
         return (
         <div className = 'productViewDiv'>
             <div>
-                {/* {
-                    image == "" ? (
-                        <img className = 'productImage' src = { temp } />
-                    ) : (
-                        <img className = 'productImage' src = { image } />
-                    )
-                } */}
+             
                 <h3>{title}</h3>
                 <p className="description">Description: {description}</p>
                 <p>Price: {price}</p>
-                <button onClick = { async (event) => { event.preventDefault(); fetchAllUserCartItems();}}>Add to Cart</button>
+                <button onClick = { async (event) => { addToCart()}}>Add to Cart</button>
                 <Link to='/products'>Back</Link>
             </div>
             {

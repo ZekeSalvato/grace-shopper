@@ -1,24 +1,33 @@
 const express = require('express');
-const {getCart, updateCart, removeFromCart} = require('../db/cart')
+const {getCart, updateCart, removeFromCart, addToCart} = require('../db/cart');
 const cartRouter = express.Router();
 
 //require token on login?
-cartRouter.get('/:cartId', async(req, res)=> {
+cartRouter.get('/', async(req, res)=> {
     try{
-        const{ cartId } = req.params
-        const carts = await getCart(cartId)
-        res.send({
-            carts
-        });
+        const carts = await getCart(req.user.id)
+        res.send(carts);
     } catch(error) {
         throw error;
     }
 });
 
-cartRouter.patch('/', async(req, res, next) =>{
-    // const { productId, quantity} = req.body;
+cartRouter.post('/', async (req, res, next) =>{
+    const {productId, quantity} = req.body;
+
     try {
-        const updatedCart = await updateCart({id, productId, quantity})
+        const addedToCart = await addToCart(productId, quantity)
+        res.send(addedToCart)
+    } catch(error){
+        console.log("Failed to add to cart")
+        throw error;
+    }
+})
+
+cartRouter.patch('/', async(req, res, next) =>{
+    const { id, quantity} = req.body;
+    try {
+        const updatedCart = await updateCart(id, quantity)
         res.send(updatedCart)
     } catch(error){
         console.log("failed to update cart")
@@ -27,12 +36,13 @@ cartRouter.patch('/', async(req, res, next) =>{
 })
 
 cartRouter.delete('/', async(req, res, send) =>{
-    if(!req.user) {
-        res.send({error: "Not Authorized for user"});
-    return;
-    }
+    // if(!req.user) {
+    //     res.send({error: "Not Authorized for user"});
+    // return;
+    // }
     try {
-        const deletedProduct = await removeFromCart(productId);
+        const {id} = req.body;
+        const deletedProduct = await removeFromCart(id);
         return deletedProduct;
     }catch(error){
         console.log("couldn't delete item")
