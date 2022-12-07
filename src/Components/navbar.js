@@ -1,108 +1,57 @@
-import React, { useState } from "react";
-import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Box } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
-import { Menu, MenuIcon } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
-
-
-// react.school/material-ui
-
-const useStyles = makeStyles((theme) => ({
-    menuButton: {
-        marginRight: theme.spacing(2)
-    },
-    title: {
-        flexGrow: 1
-    },
-    customHeight: {
-        minHeight: 200
-    },
-    offset: theme.mixins.toolbar
-}));
-
+import React from "react";
+import { Link } from 'react-router-dom';
+import {
+    AppBar,
+    Toolbar,
+    CssBaseline,
+    Typography,
+    Grid,
+    Button,
+} from '@mui/material';
 
 const Navbar = ({ logout, token }) => {
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const profileDropdowns = [<Link to={"/profile"}>Profile</Link>     ,    <Link to={"/"} onClick={() => logout()} >Logout</Link> ];
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-    
-    const classes = useStyles();
-    const [example, setExample] = useState("primary");
-    const isCustomColor = example === "customColor";
-    const isCustomHeight = example === "customHeight";
-
     return (
-        <React.Fragment>
-            <AppBar
-                color={isCustomColor || isCustomHeight ? "primary" : example}
-                className={`${isCustomColor && classes.customColor} ${isCustomHeight && classes.customHeight
-                    }`}>
+        <AppBar
+            position='static'
+            style={{}}>
+            <CssBaseline>
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Grace Shopper
-                    </Typography>
-                    <IconButton color="inherit" component={Link} to='/'>
-                        Home
-                    </IconButton>
-                    <IconButton color="inherit" component={Link} to='/Products'>
-                        Products
-                    </IconButton>
-                    <IconButton color="inherit" component={Link} to='/Cart'>
-                        Cart
-                    </IconButton>
-                    {token ? (
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar  sx={{ bgcolor: 'inherit'}} />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {profileDropdowns.map((profileDropdown) => (
-                                    <MenuItem key={profileDropdown} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{profileDropdown}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                    ) : (
-                        <>
-                            <IconButton color="inherit" component={Link} to='/Login'>
-                                Login
-                            </IconButton><IconButton color="inherit" component={Link} to='/Register'>
-                                Register
-                            </IconButton>
-                        </>
-                    )
-                    }
+                    <Grid container>
+                        <Typography
+                            type="title"
+                            style={{
+                                fontSize: '1.75rem',
+
+                            }}>
+                            Grace Shopper
+                        </Typography>
+                    </Grid>
+                    <Grid container
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="flex-end">
+                        <Typography>
+                        <Link to='/'>Home</Link>
+
+                            <Link to='/profile'>Profile</Link>
+                            <Link to='/products'>Products</Link>
+                            <Link to='/cart'>Cart</Link>
+
+                            {token ? (
+                                <Link to='/home' onClick={() => logout()}>Logout</Link>
+                            ) : (
+                                <>
+                                    <Link to='/login'>Login</Link>
+                                    <Link to='/register'>Register</Link>
+                                </>
+                            )
+
+                            }            </Typography>
+
+                    </Grid>
                 </Toolbar>
-            </AppBar>
-        </React.Fragment >
+            </CssBaseline>
+        </AppBar>
     )
 }
 
