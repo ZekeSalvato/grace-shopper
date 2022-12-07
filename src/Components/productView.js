@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProducts } from "../api";
+import './CSS/productView.css';
 
 const ProductView = ({ products, user, fetchAllUserCartItems, navigate }) => {
     const { productId } = useParams();

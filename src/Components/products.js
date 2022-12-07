@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { TextField } from "@mui/material";
+import { Link } from 'react-router-dom';
 import { getProducts } from "../api";
+import './CSS/products.css';
 import {
+    TextField,
     Paper,
     Button,
     Card,
@@ -33,6 +34,7 @@ const Products = ({ products, navigate }) => {
     const productsToDisplay = searchTerm.length ? filteredProducts : products;
     return (
         <div className='allProductsPresent'>
+            <h1>Products</h1>
             <div className='searchProductsContainer'>
                 <form
                     className='searchForm'

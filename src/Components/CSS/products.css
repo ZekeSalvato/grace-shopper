@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Lato:ital,wght@1,300&family=Rajdhani&family=Raleway:wght@300&family=Sail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=PT+Sans+Narrow&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+
+h1 {
+    font-family: Creepster;
+    font-size: 50px;
+    color: hotpink;
+    text-align: center;
+}
+
+.allProductsPresent {
+    background-color: pink;
+    background-image: url(products.webp);
+}
