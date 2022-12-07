@@ -1,6 +1,5 @@
 const express = require('express');
-const {getCart, updateCart, removeFromCart} = require('../db/cart');
-const { addToCart } = require('../src/api');
+const {getCart, updateCart, removeFromCart, addToCart} = require('../db/cart');
 const cartRouter = express.Router();
 
 //require token on login?

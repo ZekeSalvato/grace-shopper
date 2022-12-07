@@ -1,5 +1,5 @@
 import React from "react";
-import {getCart} from '../api/'
+import {getCart} from '../api'
 import './CSS/Cart.css';
 
 const Cart =  ({token}) => {
