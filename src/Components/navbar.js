@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import {
     AppBar,
@@ -9,12 +9,19 @@ import {
     Button,
 } from '@mui/material';
 
-const Navbar = ({ logout}) => {
+const Navbar = ({ logout }) => {
     const token = window.localStorage.getItem('token')
+
+    const linkStyle = {
+        textDecoration: "none",
+        color: 'white',
+        fontSize: "1.5rem"
+
+    };
     return (
-        <AppBar
-            position='static'
-            style={{}}>
+        <AppBar sx={{ bgcolor: "hotPink" }}
+            position='sticky'
+            >
             <CssBaseline>
                 <Toolbar>
                     <Grid container>
@@ -28,26 +35,24 @@ const Navbar = ({ logout}) => {
                         </Typography>
                     </Grid>
                     <Grid container
-                        display="flex"
-                        justifyContent="flex-end"
-                        alignItems="flex-end">
-                        <Typography>
-                            <Link to='/'>Home</Link>
+                        justifyContent={"space-between"}
+                    >
+                        <Link to='/' style={linkStyle}>Home</Link>
 
-                            <Link to='/profile'>Profile</Link>
-                            <Link to='/products'>Products</Link>
-                            <Link to='/cart'>Cart</Link>
+                        <Link to='/profile' style={linkStyle}>Profile</Link>
+                        <Link to='/products' style={linkStyle}>Products</Link>
+                        <Link to='/cart' style={linkStyle}>Cart</Link>
 
-                            {token ? (
-                                <Link to='/home' onClick={() => logout()}>Logout</Link>
-                            ) : (
-                                <>
-                                    <Link to='/login'>Login</Link>
-                                    <Link to='/register'>Register</Link>
-                                </>
-                            )
+                        {token ? (
+                            <Link to='/' style={linkStyle} onClick={() => logout()}>Logout</Link>
+                        ) : (
+                            <>
+                                <Link to='/login' style={linkStyle}>Login</Link>
+                                <Link to='/register' style={linkStyle}>Register</Link>
+                            </>
+                        )
 
-                            }            </Typography>
+                        }
 
                     </Grid>
                 </Toolbar>
