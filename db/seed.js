@@ -12,6 +12,7 @@ async function dropTables() {
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
+     
 
   
     `)
@@ -46,6 +47,7 @@ async function createTables() {
 
       CREATE TABLE cart (
         id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id),
         "productId" INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL
       );
@@ -56,6 +58,8 @@ async function createTables() {
         rating INTEGER NOT NULL,
         CHECK(rating <= 5)
       );
+
+
 
     `)
     

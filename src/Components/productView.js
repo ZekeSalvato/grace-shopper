@@ -4,7 +4,7 @@ import { getProducts } from "../api";
 import './CSS/productView.css';
 import { addToCart } from '../api';
 
-function ProductView({ products, user, navigate }) {
+function ProductView({ products, user, navigate, token }) {
     const { productId } = useParams();
 
     if (products.length) {
@@ -19,7 +19,7 @@ function ProductView({ products, user, navigate }) {
                     <h3>{title}</h3>
                     <p className="description">Description: {description}</p>
                     <p>Price: {price}</p>
-                    <button onClick={async (event) => { addToCart(); } }>Add to Cart</button>
+                    <button id="AddMe" onClick={async (event) => { addToCart(productId, 1, token); } }>Add to Cart</button>
                     <Link to='/products'>Back</Link>
                 </div>
                 {isAdmin ? (

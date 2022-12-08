@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
     Cart,
     Home,
@@ -20,106 +20,124 @@ const App = () => {
     const [password, setPassword] = useState('');
     const [user, setUser] = useState({});
     const [token, setToken] = useState('');
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     const fetchProducts = async () => {
-        try {console.log("in fetchProd, useEff")
-        const response = await fetch("http://localhost:3000/api/products", {
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-        console.log("look", response)
-        const products  = await response.json();
-        console.log(products)
-        setProducts(products);
-    } catch(error) {
-        console.log(error)
-        
-    }
+        try {
+            console.log("in fetchProd, useEff")
+            const response = await fetch("http://localhost:3000/api/products", {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            console.log("look", response)
+            const products = await response.json();
+            console.log(products)
+            setProducts(products);
+        } catch (error) {
+            console.log(error)
+
+        }
     };
 
-    function logout() {
-        window.localStorage.removeItem('token');
-        setToken('')
-        setUser({});
-        navigate('/')
+    async function getMe() {
+        const storedToken = window.localStorage.getItem('token');
+        if (!token) {
+            if (storedToken) {
+                setToken(storedToken);
+            }
+            return;
+        }
     }
 
-    /*const fetchUser = async = () => {
+        function logout() {
+            window.localStorage.removeItem('token');
+            setToken('')
+            setUser({});
+            navigate('/')
+        }
 
-    }*/
 
-    useEffect(() => {
-        console.log("in useeffect")
-        fetchProducts();
-    }, []);
 
-    return(
-        <div>
-         <Navbar 
-            token={token}
-            logout={logout} 
-            user={user} />
-        <Routes>
-            <Route path="/" element={<Home
+        /*const fetchUser = async = () => {
+    
+        }*/
+
+        useEffect(() => {
+            console.log("in useeffect")
+            fetchProducts();
+        }, []);
+
+        useEffect(() => {
+            getMe()
+        }, [token]);
+
+        return (
+            <div>
+                <Navbar
+                    token={token}
                     logout={logout}
-                    />}/>
+                    user={user} />
+                <Routes>
+                    <Route path="/" element={<Home
+                        logout={logout}
+                    />} />
 
-            <Route path="/login" element={
-                <Login username = {username}
-                setUsername = {setUsername}
-                password = {password}
-                setPassword = {setPassword}
-                user = {user}
-                setUser = {setUser}
-                setToken={ setToken }
-                navigate={navigate}
-                />
-            }/>
-            
-            <Route path='/profile' element={
-                <Profile
-                user={user} />}
-            />
-            <Route path="/register" element ={
-                <Register 
-                username = {username}
-                setUsername = {setUsername}
-                password = {password}
-                setPassword = {setPassword}
-                setUser = {setUser}
-                token = {token}
-                setToken = { setToken }
-                />
-            }/>
+                    <Route path="/login" element={
+                        <Login username={username}
+                            setUsername={setUsername}
+                            password={password}
+                            setPassword={setPassword}
+                            user={user}
+                            setUser={setUser}
+                            setToken={setToken}
+                            navigate={navigate}
+                        />
+                    } />
 
-            <Route path="/products" element= {
-                <Products 
-                products = {products}
-                setProducts = {setProducts}
-                />
-            }/>
+                    <Route path='/profile' element={
+                        <Profile
+                            user={user} />}
+                    />
+                    <Route path="/register" element={
+                        <Register
+                            username={username}
+                            setUsername={setUsername}
+                            password={password}
+                            setPassword={setPassword}
+                            setUser={setUser}
+                            token={token}
+                            setToken={setToken}
+                        />
+                    } />
 
-            <Route path="/products/:productId" element= {
-                <ProductView
-                products ={products}
-                user = {user}
-                // fetchAllUserCartItems ={fetchAllUserCartItems}
-                // navigate = {navigate}
-                />
-            }/>
+                    <Route path="/products" element={
+                        <Products
+                            products={products}
+                            setProducts={setProducts}
+                        />
+                    } />
 
-            <Route path="/cart" element= {
-                <Cart
-                // token={token}
-                />
-            }/>
+                    <Route path="/products/:productId" element={
+                        <ProductView
+                            products={products}
+                            user={user}
+                            token={token}
+                        // fetchAllUserCartItems ={fetchAllUserCartItems}
+                        // navigate = {navigate}
+                        />
+                    } />
 
-        </Routes>
-        </div>
-    );
+                    <Route path="/cart" element={
+                        <Cart
+                        // token={token}
+                        />
+                    } />
 
-}
+                </Routes>
+            </div>
+        );
+
+    }
 
 
-export default App;
+    export default App;

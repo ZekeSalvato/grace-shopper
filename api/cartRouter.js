@@ -16,7 +16,7 @@ cartRouter.post('/', async (req, res, next) =>{
     const {productId, quantity} = req.body;
 
     try {
-        const addedToCart = await addToCart(productId, quantity)
+        const addedToCart = await addToCart(productId, quantity, req.user.id)
         res.send(addedToCart)
     } catch(error){
         console.log("Failed to add to cart")

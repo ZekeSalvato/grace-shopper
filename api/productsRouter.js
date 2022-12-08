@@ -3,12 +3,12 @@ const { fetchAllProducts, getProductById } = require('../db/products')
 const productsRouter = express.Router();
 
 const { createProduct, updateProduct, deleteProduct } = require('../db');
-console.log(fetchAllProducts)
+// console.log(fetchAllProducts)
 productsRouter.get('/', async (req, res, next) => {
   try {
-    console.log("await fetchAllProducts()")
+    // console.log("await fetchAllProducts()")
     const products = await fetchAllProducts();
-    console.log(products)
+    // console.log(products)
     res.send(products)
   }
   catch (error) {
