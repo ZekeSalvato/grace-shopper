@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/api'
+const baseURL = 'https://grace-server.onrender.com/api'
 
 export const registerUser = async (username, password) => {
     try {
