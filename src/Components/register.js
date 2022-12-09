@@ -55,12 +55,12 @@ const Register = ({ setToken }) => {
             
           <input
             type='text'  
-            placeholder="Enter Username"
+            placeholder="Username"
             onChange={(event) => setUsername(event.target.value)}
           />
           <input
             type='password'
-            placeholder="Enter Password"
+            placeholder="Password"
             onChange={(event) => setPassword(event.target.value)} />
           <input
             type='password'
@@ -75,7 +75,7 @@ const Register = ({ setToken }) => {
           </button>
         </form>
 
-          <Link id='signUp' to={"/Login"}>Login</Link>
+          <Link id='signUp' to={"/Login"}>Have an account already?</Link>
         <div id="passReqs">
           <h4 id='reqHeader'>Password Requirements:</h4>
           <ul>

@@ -36,12 +36,13 @@ const Products = ({ products, navigate }) => {
             <h1 id='productTitle'>Products</h1>
             <div className='searchProductsContainer'>
                 <form
+                    id='prodSearchForm'
                     className='searchForm'
                     onSubmit={(event) => {
                         event.preventDefault();
                     }}>
                     <div className='returnedContentForm'>
-                        <h3 className='searchBarHeader'>Search Products Here</h3>
+                        
                         <TextField
                             id="standard-basic"
                             label="(ex: title, description)"

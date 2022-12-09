@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=PT+Sans+Narrow&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+
+
 #loginForm{
     display: flex;
     flex-direction: column;
@@ -15,9 +20,9 @@
 }
 
 #loginForm h1 {
-    font-family: monospace;
-    font-size: xx-large;
-    text-shadow: 0px 7px 8px black;
+    font-family: creepster;
+    font-size: 40px;
+    text-shadow: -4px 4px black;
     color: white;
 }
 
