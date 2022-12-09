@@ -5,8 +5,8 @@
 #homePage{
     display: flex;
     justify-content: center;
-    background-image: url(home.webp);
-    height: 90vh;
+    background-image: url(tvstatic.gif);
+    height: 91.5vh;
     width: 100vw;
 }
 
@@ -16,7 +16,8 @@
     margin-top: 170px;
     font-family: Creepster;
     color: hotpink;
-    font-size: 50px;
+    font-size: 70px;
     font-style: oblique;
-    text-shadow: -3px 3px black;
+    text-shadow: -4px 4px white;
 }
+
