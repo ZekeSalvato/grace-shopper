@@ -4,97 +4,50 @@ import { useParams } from "react-router-dom";
 import { getCart, addToCart, removeFromCart, updateCart } from '../api';
 import './CSS/Cart.css';
 
-//add items to cart
 
-// const addItems = () => {
-//     const addBtn = document.querySelectorAll("#AddMe");
-//     addBtn.forEach(function(btn){
-//         btn.addEventListener('click', function(event){
-//             console.log(event.target)
-//         })
-//     })
-// } 
-// addItems();
+
+
 
 
 
 //delete items
 
 const Cart = ({ token }) => {
-    
-    async function getMyCartWithItems(){
-        try {
-          const { data } = await axios.get('/api/cart/myCart')
-      
-          return data;
-        } catch (error) {
-          console.log("Error getting guestCartIn Session")
-          console.error(error)
-        }
-      }
-   
-
-    //     const handleSubmit = async () =>{
-    //          const cart =  await getCart()
-
-    //          //call to api for getcart, include useeffect
-    //          //cart is basically condensed react app
-    //          //getcart and assign a state and effect
-    //     }
-    //    console.log(getCart(token))
-
-    // let deleteBtn = document.getElementById("#delete")
-
-    // for (let i = 0; i < deleteBtn.length; i++) {
-    //     let btn = deleteBtn[i]
-    //     btn.addEventListener('click', removeItem)
-    // }
-
-    // function removeItem(event) {
-    //     let btnClick = event.target
-    //     btnClick.parentElement.parentElement.remove()
-    // }
-
-    // let addBtn = document.getElementById("#AddMe")
-
-    // for (let i=0; i< addBtn.length; i++) {
-    //     let btn = addBtn[i]
-    //     btn.addEventListener('click', function(event){
-    //         let btnClick= event.target
-    //         btnClick.parentElement.parentElement
-    //     })
-    // }
-
+    const [cart, setCart] = useState([]);
+    const fetchCartItems = async () => {
+        setCart(await getCart(token))
+    }
+    useEffect(
+        () => {
+            fetchCartItems();
+        }, []
+    )
+    console.log('cart', cart)
 
     return (
         <div id="cartCard">
             <h2>🛍  Shopping Cart</h2>
             <div className="row">
-                <span className="item header column">ITEM </span>
-                <span className="price header column">PRICE </span>
-                <span className="quantity header column">QUANTITY</span>
+                {
+                    cart.map((item)=>{
+                        const { image, title, price, quantity} = item
+                        return (
+                            <div><p> Title: {title}</p>
+                            <p> Quantity: {quantity} </p>
+                            <p> Price: {price} </p>
+                            </div>
+                        )
+                    })
+                }
             </div>
-            {/* <div className="cart-item">
-                <div className="row">
-                    <div className="cart-item column">
-                        <h3> shirt</h3>
-                    </div>
-                    <div className="quantity column">
-                        <input className="amt" type='number' value='1'></input>
-                        <button id="delete">Delete</button>
-                    </div>
-                </div>
-            </div> */}
+
 
         </div>
     )
 }
 
-// async function addItem () {
-//     const results = await addToCart(token)
-//     getCart()
 
-//    }
+
 
 
 

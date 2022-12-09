@@ -8,7 +8,7 @@ async function getCart(id){
             SELECT * 
             FROM cart
             JOIN products ON cart."productId" = products.id
-            WHERE cart."userId" = $1
+            WHERE cart."userId" = $1;
             `, [id]
         )
         return cart;
