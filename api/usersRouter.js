@@ -4,6 +4,7 @@ const { requireUser } = require('./utils');
 const usersRouter = express.Router();
 const bcrypt = require('bcrypt');
 const { createUser, loginUser, getUser, getUserByUsername, getUserById, checkIfUserExists, fetchAllUsers} = require('../db/users')
+const {JWT_SECRET} = process.env;
 
 usersRouter.get('/', async (req, res, next) => {
     try {
@@ -44,7 +45,7 @@ usersRouter.post('/register', async (req, res, next) => {
         const token = jwt.sign({ 
             id: user.id,
             username
-         }, `${process.env.JWT_SECRET_KEY}`)
+         }, `${JWT_SECRET}`)
         res.send({ name: 'RegisterSuccess', message: 'Successfully registered', user, token});
       }
     } catch (error) {
