@@ -1,0 +1,10 @@
+.productViewDiv {
+    background-image: url(productView.webp);
+    background-position: center;
+    background-size: auto;
+    padding: 20%;
+}
+
+#productViewCard {
+    display: center;
+}

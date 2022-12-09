@@ -2,18 +2,20 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProducts } from "../api";
 import './CSS/productView.css';
-import { addToCart } from '../api';
+import { addToCart, removeFromCart } from '../api';
+import { Card } from "@mui/material";
 
-function ProductView({ products, user, navigate, token }) {
+function ProductView({ products, user, fetchAllCartItems, navigate, token, fetchAllProducts }) {
     const { productId } = useParams();
 
     if (products.length) {
         const [currentProduct] = products.filter(product => product.id == productId);
-        const { title, description, price } = currentProduct;
+        const { title, description, image, price } = currentProduct;
         const { isAdmin, id } = user;
 
         return (
             <div className='productViewDiv'>
+                <Card id='productViewCard'>
                 <div>
 
                     <h3>{title}</h3>
@@ -27,6 +29,7 @@ function ProductView({ products, user, navigate, token }) {
                 ) : (
                     <p></p>
                 )}
+            </Card>
             </div>
         );
     } else {

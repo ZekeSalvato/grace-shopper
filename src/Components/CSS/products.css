@@ -16,6 +16,7 @@ h1 {
     background-image: url(products.webp);
     background-position: center;
     background-size: auto;
+    padding: 5%;
 }
 
 #productList {
