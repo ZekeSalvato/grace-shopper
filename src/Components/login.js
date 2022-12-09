@@ -31,12 +31,12 @@ const Login = ({ setToken, navigate }) => {
         }}>
                 <input
                     type = 'text'
-                    placeholder="Enter Username"
+                    placeholder="Username"
                     onChange={(event) => setUsername(event.target.value)}
                 />
                 <input
                     type="password"
-                    placeholder="Enter Password"
+                    placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                 />
                 <button id='button'
