@@ -2,16 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rubik+Burned&family=Rubik+Iso&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=PT+Sans+Narrow&family=Rubik+Burned&family=Rubik+Iso&display=swap');
 
-#cartCard h2{
-    text-align: center;
-    font-size: 40px;
+
+
+#profileHead{
     font-family: creepster;
-    color: hotpink;
-    text-shadow: -4px 2px black;
+    margin-left: 15px;
 }
 
-#cartCard{
-    background-image: url(cart.jpg);
-    background-size: cover;
-    height: 90vh;
+#profileForm h2{
+    font-family: monospace;
+    margin-left: 25px;
 }

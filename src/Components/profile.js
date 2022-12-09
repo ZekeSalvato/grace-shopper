@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './CSS/profile.css';
+
 const Profile = ({ user }) => {
   const userID = user.id;
   
@@ -9,9 +11,8 @@ const Profile = ({ user }) => {
     //previously viewed, order history, Profile title, reviews
     <div id="profileForm">
       <h1 id='profileHead'>Profile</h1>
-      <h2>Previously Viewed</h2>
-      <h2>Order History</h2>
-      <h2>Reviews</h2>
+      <h2>Order History:</h2>
+      <h2>Reviews:</h2>
     </div>
   )
 }
