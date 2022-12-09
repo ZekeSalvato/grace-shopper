@@ -1,8 +1,10 @@
 .productViewDiv {
+    display: center;
     background-image: url(productView.webp);
     background-position: center;
     background-size: auto;
-    padding: 20%;
+    padding: 15%;
+    padding-bottom: 50%;
 }
 
 #productViewCard {
