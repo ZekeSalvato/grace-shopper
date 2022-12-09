@@ -9,17 +9,20 @@ import {
     Button,
 } from '@mui/material';
 
+import './CSS/Navbar.css';
+
 const Navbar = ({ logout }) => {
     const token = window.localStorage.getItem('token')
 
     const linkStyle = {
         textDecoration: "none",
-        color: 'white',
-        fontSize: "1.5rem"
-
+        color: 'hotpink',
+        fontSize: "1.9rem",
+        fontFamily: "Creepster",
+        textShadow: "-1px 1px black"
     };
     return (
-        <AppBar sx={{ bgcolor: "hotPink" }}
+        <AppBar sx={{ bgcolor: "white" }}
             position='sticky'
             >
             <CssBaseline>
@@ -29,9 +32,8 @@ const Navbar = ({ logout }) => {
                             type="title"
                             style={{
                                 fontSize: '1.75rem',
-
                             }}>
-                            Grace Shopper
+                            
                         </Typography>
                     </Grid>
                     <Grid container

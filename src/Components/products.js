@@ -33,7 +33,7 @@ const Products = ({ products, navigate }) => {
     const productsToDisplay = searchTerm.length ? filteredProducts : products;
     return (
         <div className='allProductsPresent'>
-            <h1>Products</h1>
+            <h1 id='productTitle'>Products</h1>
             <div className='searchProductsContainer'>
                 <form
                     className='searchForm'

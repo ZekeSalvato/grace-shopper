@@ -1,15 +1,22 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=PT+Sans+Narrow&family=Rubik+Burned&family=Rubik+Iso&display=swap');
+
 #homePage{
     display: flex;
     justify-content: center;
     background-image: url(home.webp);
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
 }
 
 #siteTitle{
     display: flex;
     justify-content: center;
-    margin-top: 110px;
-    text-decoration: underline;
+    margin-top: 170px;
+    font-family: Creepster;
+    color: hotpink;
+    font-size: 50px;
+    font-style: oblique;
+    text-shadow: -3px 3px black;
 }

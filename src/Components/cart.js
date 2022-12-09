@@ -22,7 +22,16 @@ import './CSS/Cart.css';
 
 const Cart = ({ token }) => {
     
-
+    async function getMyCartWithItems(){
+        try {
+          const { data } = await axios.get('/api/cart/myCart')
+      
+          return data;
+        } catch (error) {
+          console.log("Error getting guestCartIn Session")
+          console.error(error)
+        }
+      }
    
 
     //     const handleSubmit = async () =>{
