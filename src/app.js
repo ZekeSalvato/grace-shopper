@@ -122,8 +122,7 @@ const App = () => {
                             products={products}
                             user={user}
                             token={token}
-                        // fetchAllUserCartItems ={fetchAllUserCartItems}
-                        // navigate = {navigate}
+                    
                         />
                     } />
 

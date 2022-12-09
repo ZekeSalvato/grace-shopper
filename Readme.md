@@ -20,7 +20,7 @@ group discussion of project milestones
 
 get cart to show and remove stuff and checkout (for checkout, have quantities go sequentially )
 
-get auto login set up, browser should look for existing token and auto sign in user (look at stranger's things)
+<!-- get auto login set up, browser should look for existing token and auto sign in user (look at stranger's things) -->
 
 include email address in users db
 

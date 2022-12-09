@@ -1,5 +1,7 @@
+import { token } from "morgan";
 import React, { useState, useEffect } from "react";
-import { getCart, addToCart, removeFromCart, updateCart } from '../api'
+import { useParams } from "react-router-dom";
+import { getCart, addToCart, removeFromCart, updateCart } from '../api';
 import './CSS/Cart.css';
 
 //add items to cart
@@ -17,10 +19,11 @@ import './CSS/Cart.css';
 
 
 //delete items
-const remove = () => {
 
-}
 const Cart = ({ token }) => {
+    
+
+   
 
     //     const handleSubmit = async () =>{
     //          const cart =  await getCart()
@@ -58,8 +61,8 @@ const Cart = ({ token }) => {
         <div id="cartCard">
             <h2>🛍  Shopping Cart</h2>
             <div className="row">
-                <span className="item header column">ITEM</span>
-                <span className="price header column">PRICE</span>
+                <span className="item header column">ITEM </span>
+                <span className="price header column">PRICE </span>
                 <span className="quantity header column">QUANTITY</span>
             </div>
             {/* <div className="cart-item">
