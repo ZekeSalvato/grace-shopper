@@ -18,9 +18,9 @@ function ProductView({ products, user, fetchAllCartItems, navigate, token, fetch
                 <Card id='productViewCard'>
                 <div>
 
-                    <h3>{title}</h3>
+                    <h3 className='productViewTitle'>{title}</h3>
                     <p className="description">Description: {description}</p>
-                    <p>Price: {price}</p>
+                    <p className='price'>Price: {price}</p>
                     <button id="AddMe" onClick={async (event) => { addToCart(productId, 1, token); } }>Add to Cart</button>
                     <Link to='/products'>Back</Link>
                 </div>
